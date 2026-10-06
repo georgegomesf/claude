@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cards Instagram — Plataforma de Eventos Rede Filosófica</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{
+  --navy:#1b2d52; --navy-d:#0d1a3a; --purple:#5b3df5; --cyan:#12a8d8; --blue:#2a7fd4;
+  --ink:#1b2d52; --muted:#43567a; --orange:#f59e0b; --red:#e11d48; --green:#10a36b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#888;font-family:Outfit,sans-serif;display:flex;flex-direction:column;gap:40px;align-items:center;padding:40px}
+.card{width:1080px;height:1350px;position:relative;overflow:hidden;color:var(--ink);flex:none}
+.card.light{background:radial-gradient(circle at 50% 40%,#f4f9ff 0,#dcebfa 55%,#bfdcf5 100%)}
+.card.dark{background:linear-gradient(160deg,#17306a 0,#0f2250 45%,#0a1637 100%);color:#fff}
+/* decor */
+.card::before,.card::after{content:"";position:absolute;pointer-events:none}
+.light::before{right:-260px;top:-120px;width:620px;height:1500px;background:linear-gradient(180deg,#8fc4ee,#2a7fd4);transform:rotate(-32deg);opacity:.28}
+.light::after{left:-300px;bottom:-200px;width:560px;height:1100px;background:linear-gradient(180deg,#59a5e6,#1f6fc4);transform:rotate(-32deg);opacity:.35}
+.dark::before{right:-300px;top:-200px;width:760px;height:760px;border-radius:50%;background:linear-gradient(135deg,#4b36c9,#2a5fd0);opacity:.55}
+.dark::after{left:-260px;bottom:-300px;width:760px;height:760px;border-radius:50%;background:linear-gradient(135deg,#0f6f95,#14477f);opacity:.7}
+.in{z-index:2;position:absolute;inset:0;padding:84px 80px 0}
+.logo{position:absolute;right:70px;top:64px;width:92px;height:92px}
+.eyebrow{display:flex;align-items:center;gap:16px;font-weight:700;letter-spacing:.2em;font-size:26px;color:var(--blue);text-transform:uppercase}
+.eyebrow::before{content:"";width:46px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--purple),var(--cyan))}
+.dark .eyebrow{color:#6fc1f5}
+h1,h2{font-weight:800;letter-spacing:-.03em;line-height:1.02}
+h2{font-size:92px;margin-top:26px}
+.g{background:linear-gradient(90deg,#5b3df5 10%,#2a7fd4 70%,#12a8d8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dark .g{background:linear-gradient(90deg,#8b6cff 0,#5b86f5 60%,#27b5e0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:38px;line-height:1.38;font-weight:400;color:var(--muted);margin-top:34px;max-width:880px}
+.dark .lead{color:#b9c8e6}
+.foot{position:absolute;left:80px;right:80px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:26px;color:var(--muted);letter-spacing:.04em}
+.dark .foot{color:#8ea3cc}
+.foot b{color:var(--blue);font-weight:700}
+.dark .foot b{color:#6fc1f5}
+.swipe{display:flex;align-items:center;gap:14px}
+.swipe svg{width:34px;height:34px}
+/* bits */
+.panel{background:rgba(255,255,255,.92);border-radius:34px;box-shadow:0 18px 50px rgba(20,60,130,.18);padding:36px 40px}
+.dark .panel{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);box-shadow:none}
+.ico{width:84px;height:84px;border-radius:24px;background:linear-gradient(135deg,#5b3df5,#2a7fd4);display:grid;place-items:center;flex:none;box-shadow:0 10px 24px rgba(70,70,230,.35)}
+.ico svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#6d4cf7,#4a5df0);color:#fff;font-weight:700;font-size:32px;display:grid;place-items:center;flex:none;box-shadow:0 0 0 8px rgba(110,90,250,.22)}
+.pill{display:inline-block;font-weight:700;font-size:22px;letter-spacing:.12em;padding:9px 20px;border-radius:12px;text-transform:uppercase;color:#fff}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;background:#fff;box-shadow:0 8px 24px rgba(20,60,130,.15);font-weight:600;font-size:30px}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--purple);flex:none}
+/* browser mock */
+.win{background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(10,30,80,.3);overflow:hidden;color:var(--ink)}
+.win .bar{height:54px;background:#eef2f8;display:flex;align-items:center;gap:10px;padding:0 20px}
+.win .bar i{width:15px;height:15px;border-radius:50%;background:#ff5f57}
+.win .bar i:nth-child(2){background:#febc2e}.win .bar i:nth-child(3){background:#28c840}
+.win .bar span{margin-left:14px;flex:1;background:#fff;border-radius:999px;padding:6px 20px;font-size:21px;color:#5b6b88;font-weight:500}
+.mini{font-size:20px;color:#6b7b99}
+.btnp{background:#5b3df5;color:#fff;border-radius:12px;font-weight:600;padding:12px 22px;font-size:22px;display:inline-block}
+.tag{display:inline-block;background:#ece9ff;color:#4a35d8;border-radius:10px;padding:6px 14px;font-size:20px;font-weight:600}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:30px;margin-top:50px}
+.bullets li{display:flex;gap:24px;align-items:flex-start;font-size:32px;line-height:1.25;color:var(--muted)}
+.bullets li b{color:var(--ink);font-weight:700;display:block;font-size:37px;margin-bottom:4px}
+.dark .bullets li{color:#b9c8e6}.dark .bullets li b{color:#fff}
+.bullets .dot{margin-top:18px;width:18px;height:18px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="lg" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="26" fill="#1b2d52"/>
+      <g stroke="#fff" stroke-width="5" stroke-linecap="round"><path d="M32 33 L47 62 M52 59 L68 52"/></g>
+      <g fill="#fff"><circle cx="30" cy="30" r="10"/><circle cx="68" cy="43" r="10"/><circle cx="50" cy="63" r="10"/><circle cx="70" cy="68" r="10" opacity="0"/></g>
+      <circle cx="72" cy="72" r="11" fill="#fff"/><circle cx="72" cy="72" r="11" fill="none"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- 01 CAPA -->
+<section class="card light" id="c01">
+  <div class="in" style="text-align:center">
+    <svg style="width:150px;height:150px;margin-top:40px;filter:drop-shadow(0 18px 24px rgba(20,40,90,.3))"><use href="#lg"/></svg>
+    <div class="eyebrow" style="justify-content:center;margin-top:36px">Rede Filosófica</div>
+    <h1 style="font-size:130px;margin-top:20px;letter-spacing:-.04em;line-height:.98">Plataforma<br>de <span class="g">Eventos</span></h1>
+    <p style="font-size:40px;font-weight:500;color:#2d4274;margin-top:34px">A pesquisa acadêmica de Filosofia<br>em tempo real</p>
+    <!-- phone + browser -->
+    <div style="position:absolute;left:150px;right:150px;top:830px;height:480px">
+      <div class="win" style="position:absolute;left:230px;right:0;top:20px;height:560px;">
+        <div class="bar"><i></i><i></i><i></i><span>eventos.redefilosofica.com.br</span></div>
+        <div style="background:linear-gradient(180deg,#171d5c,#0d1240);height:130px;padding:34px 40px;color:#fff;text-align:left"><div class="mini" style="color:#9aa8e0">Programação</div><div style="font-size:42px;font-weight:700">Pesquisa</div></div>
+      </div>
+      <div style="position:absolute;left:0;top:0;width:290px;height:600px;border:10px solid #1b2d52;border-radius:46px;background:#fff;box-shadow:0 26px 60px rgba(10,30,80,.4);overflow:hidden;text-align:left;padding:20px">
+        <div style="font-weight:800;font-size:22px;color:var(--navy)">Rede FILOSÓFICA <span class="tag" style="font-size:12px;padding:3px 8px">EVENTOS</span></div>
+        <div style="margin-top:20px;border-radius:14px;background:#fcd2bd;height:150px;position:relative;overflow:hidden"><div style="position:absolute;left:-30px;top:20px;width:130px;height:120px;border-radius:50%;background:#1f4e6e"></div><div style="position:absolute;right:12px;top:24px;font-size:13px;font-weight:700;color:#1d4e3c;text-align:right">16 a 20 de<br>novembro de 2026</div></div>
+        <div class="tag" style="margin-top:14px;font-size:14px;background:#dff2fb;color:#14688f">Faltam 41 dias</div>
+        <div style="font-weight:800;font-size:22px;line-height:1.15;margin-top:10px">XXI Encontro Nacional ANPOF — Florianópolis 2026</div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 02 O QUE É -->
+<section class="card light" id="c02">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Visão geral</div>
+    <h2>O que é a<br>plataforma<br>de <span class="g">eventos</span></h2>
+    <p class="lead">Suporte completo à realização de eventos acadêmicos de Filosofia: organização simples para quem promove, e envolvimento fácil para quem participa.</p>
+    <div style="display:flex;flex-direction:column;gap:26px;margin-top:56px">
+      <div style="display:flex;gap:26px">
+        <div class="panel" style="flex:1"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div><h3 style="font-size:42px;margin:22px 0 8px;font-weight:700">Curta duração</h3><p style="font-size:30px;color:var(--muted);line-height:1.3">Encontros, colóquios, simpósios e minicursos.</p></div>
+        <div class="panel" style="flex:1"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M17.5 14.5c2.3.3 3.7 1.8 4 4.5"/></svg></div><h3 style="font-size:42px;margin:22px 0 8px;font-weight:700">Longa duração</h3><p style="font-size:30px;color:var(--muted);line-height:1.3">Grupos de estudo, ciclos de debates e leituras.</p></div>
+      </div>
+      <div class="panel" style="display:flex;gap:30px;align-items:center"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></div><div><h3 style="font-size:42px;font-weight:700">Gestão colaborativa</h3><p style="font-size:30px;color:var(--muted);line-height:1.3;margin-top:6px">Os próprios parceiros criam seus eventos e grupos e gerenciam participantes e membros.</p></div></div>
+    </div>
+    <div class="foot"><span><b>02</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 03 TRÊS FORMATOS -->
+<section class="card light" id="c03">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Exemplos reais</div>
+    <h2>Três formatos,<br>uma mesma<br><span class="g">plataforma</span></h2>
+    <div style="display:flex;flex-direction:column;gap:24px;margin-top:56px">
+      <div class="panel" style="display:flex;gap:34px;align-items:center;padding:28px 36px">
+        <div style="width:230px;height:170px;border-radius:22px;background:#fcd2bd;position:relative;overflow:hidden;flex:none"><div style="position:absolute;left:-40px;top:30px;width:150px;height:150px;border-radius:50%;background:#1f4e6e"></div><div style="position:absolute;right:14px;top:18px;font-size:17px;font-weight:700;color:#1d4e3c;text-align:right">16 a 20 nov.<br>UFSC</div></div>
+        <div><span class="pill" style="background:#f59e0b">Evento</span><h3 style="font-size:40px;font-weight:700;margin:12px 0 6px;line-height:1.1">XXI Encontro Nacional ANPOF</h3><p style="font-size:29px;color:var(--muted);line-height:1.25"><b class="g" style="font-size:40px">53</b> atividades em 5 dias, em Florianópolis</p></div>
+      </div>
+      <div class="panel" style="display:flex;gap:34px;align-items:center;padding:28px 36px">
+        <div style="width:230px;height:170px;border-radius:22px;background:#f3f3f3;display:grid;place-items:center;flex:none;font-family:Georgia,serif;font-size:50px;white-space:nowrap;color:#222">SB<span style="color:#b01c1c">ϕ</span>A</div>
+        <div><span class="pill" style="background:#12a8d8">Ciclo contínuo</span><h3 style="font-size:40px;font-weight:700;margin:12px 0 6px;line-height:1.1">Ciclo de Palestras SBFA</h3><p style="font-size:29px;color:var(--muted);line-height:1.25">Online no YouTube · <b class="g" style="font-size:40px">46</b> palestras ao longo de anos</p></div>
+      </div>
+      <div class="panel" style="display:flex;gap:34px;align-items:center;padding:28px 36px">
+        <div style="width:230px;height:170px;border-radius:22px;background:linear-gradient(90deg,#cfe3f7 50%,#1c1c1c 50%);display:grid;place-items:center;flex:none"><svg style="width:70px;height:70px"><use href="#lg"/></svg></div>
+        <div><span class="pill" style="background:#7c3aed">Grupo</span><h3 style="font-size:40px;font-weight:700;margin:12px 0 6px;line-height:1.1">Grupo de Colaboração</h3><p style="font-size:29px;color:var(--muted);line-height:1.25">Online · Google Meet · <b class="g" style="font-size:40px">6</b> membros e inscrição com voucher</p></div>
+      </div>
+    </div>
+    <div class="foot"><span><b>03</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 04 DESCOBRIR -->
+<section class="card light" id="c04">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Para quem participa</div>
+    <h2>Descobrir<br>eventos e <span class="g">grupos</span></h2>
+    <div class="win" style="zoom:.8;margin-top:50px;height:430px">
+      <div class="bar"><i></i><i></i><i></i><span>eventos.redefilosofica.com.br/pesquisa</span></div>
+      <div style="display:flex;gap:24px;padding:26px;background:#f6f8fc;height:100%">
+        <div style="width:300px;display:flex;flex-direction:column;gap:16px">
+          <div style="background:#fff;border-radius:16px;padding:18px"><div class="mini" style="font-weight:700">PESQUISA TEXTUAL</div><div style="background:#f1f4f9;border-radius:10px;height:42px;margin:10px 0"></div><div class="btnp" style="width:100%;text-align:center">Buscar</div></div>
+          <div style="background:#fff;border-radius:16px;padding:18px"><div class="mini" style="font-weight:700">OUTUBRO DE 2026</div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px;font-size:17px;text-align:center;color:#556">
+              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><b style="background:#5b3df5;color:#fff;border-radius:8px">6</b><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span></div></div>
+        </div>
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <div style="background:#fff;border-radius:16px;overflow:hidden"><div style="height:110px;background:#fcd2bd"></div><div style="padding:12px;font-weight:700;font-size:20px">XXI Encontro ANPOF</div></div>
+          <div style="background:#fff;border-radius:16px;overflow:hidden"><div style="height:110px;background:#c62828"></div><div style="padding:12px;font-weight:700;font-size:20px">X Colóquio Spinoza</div></div>
+        </div>
+      </div>
+    </div>
+    <ul class="bullets" style="gap:26px;margin-top:44px">
+      <li><span class="num">1</span><span><b>Pesquisa textual</b>por título, autor ou local</span></li>
+      <li><span class="num">2</span><span><b>Navegar por data</b>calendário com os dias que têm programação</span></li>
+      <li><span class="num">3</span><span><b>Eventos ou grupos</b>filtro por tipo de programação</span></li>
+      <li><span class="num">4</span><span><b>Cards com status</b>“Faltam 41 dias”, “Encerrado” ou “Grupo”</span></li>
+    </ul>
+    <div class="foot"><span><b>04</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 05 CAPA DO EVENTO -->
+<section class="card light" id="c05">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Capa do evento ou grupo</div>
+    <h2>Toda a informação<br>em <span class="g">uma página</span></h2>
+    <div class="win" style="zoom:.8;margin-top:48px">
+      <div class="bar"><i></i><i></i><i></i><span>eventos.redefilosofica.com.br/e/xxi-encontro-nacional-anpof</span></div>
+      <div style="padding:26px 30px;background:#f6f8fc">
+        <div style="background:#fff;border-radius:16px;padding:16px;display:flex;gap:10px;font-size:20px;font-weight:600"><span class="btnp" style="padding:8px 18px">Início</span><span style="padding:8px 18px">Programação</span><span style="padding:8px 18px">Cronograma</span></div>
+        <div style="background:#fff;border-radius:16px;margin-top:16px;padding:22px;display:flex;gap:22px;align-items:center">
+          <div style="width:150px;height:150px;border-radius:16px;background:#fcd2bd;position:relative;overflow:hidden;flex:none"><div style="position:absolute;left:-30px;top:30px;width:100px;height:100px;border-radius:50%;background:#1f4e6e"></div></div>
+          <div><span class="tag" style="background:#dff2fb;color:#14688f">Faltam 41 dias</span><div style="font-size:30px;font-weight:800;line-height:1.1;margin:10px 0 6px">XXI Encontro Nacional ANPOF — Florianópolis 2026</div><div class="mini">16 a 20 nov. 2026 · UFSC — Campus Trindade</div></div>
+        </div>
+        <div style="background:#fff;border-radius:16px;margin-top:16px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center"><div><span class="tag">Próxima atividade</span><div style="font-size:28px;font-weight:700;margin-top:6px">Credenciamento</div></div><span class="btnp">Ver detalhes</span></div>
+      </div>
+    </div>
+    <ul class="bullets" style="gap:26px;margin-top:48px">
+      <li><span class="num">1</span><span><b>Identidade do evento</b>logomarca, título, organização, data e local</span></li>
+      <li><span class="num">2</span><span><b>Contagem regressiva e próxima atividade</b>com acesso direto aos detalhes</span></li>
+      <li><span class="num">3</span><span><b>Sobre e informações</b>descrição, endereço, links e arquivos</span></li>
+    </ul>
+    <div class="foot"><span><b>05</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 06 PROGRAMAÇÃO E CRONOGRAMA -->
+<section class="card light" id="c06">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Programação e cronograma</div>
+    <h2>Filtros que<br>ajudam a <span class="g">escolher</span></h2>
+    <div class="win" style="zoom:.8;margin-top:48px">
+      <div class="bar"><i></i><i></i><i></i><span>Cronograma · Semana</span></div>
+      <div style="padding:22px 26px;background:#fff">
+        <div style="display:flex;gap:14px;margin-bottom:18px">
+          <span class="btnp" style="padding:10px 20px">16 nov</span><span class="tag" style="background:#f1f4f9;color:#445">17</span><span class="tag" style="background:#f1f4f9;color:#445">18</span><span class="tag" style="background:#f1f4f9;color:#445">19</span><span class="tag" style="background:#f1f4f9;color:#445">20</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;height:250px">
+          <div style="background:#7c3aed;border-radius:10px;color:#fff;font-size:18px;padding:10px;font-weight:600;display:flex;align-items:end">Credenciamento</div>
+          <div style="display:flex;flex-direction:column;gap:12px"><div style="background:#7c3aed;border-radius:10px;height:150px;color:#fff;font-size:17px;padding:10px;font-weight:600">Encontros de GTs</div></div>
+          <div style="background:#7c3aed;border-radius:10px;height:190px;color:#fff;font-size:17px;padding:10px;font-weight:600">Minicurso: Realismo…</div>
+          <div style="background:#7c3aed;border-radius:10px;height:110px;color:#fff;font-size:17px;padding:10px;font-weight:600">Reunião Anpof-Capes</div>
+          <div style="background:#e11d48;border-radius:10px;height:70px;margin-top:70px;color:#fff;font-size:17px;padding:10px;font-weight:600">Conferência</div>
+        </div>
+      </div>
+    </div>
+    <ul class="bullets" style="gap:26px;margin-top:48px">
+      <li><span class="num">1</span><span><b>Busca e filtros</b>texto livre, categorias, roteiros e curtidas</span></li>
+      <li><span class="num">2</span><span><b>Dia, semana ou mês</b>três escalas para ver o evento todo ou só o seu percurso</span></li>
+      <li><span class="num">3</span><span><b>Curtir, lembrar, adicionar</b>monte o seu roteiro personalizado</span></li>
+    </ul>
+    <div class="foot"><span><b>06</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 07 ATIVIDADE EM DETALHE / MOBILE -->
+<section class="card dark" id="c07">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Em qualquer tela</div>
+    <h2>A mesma<br>experiência<br>no <span class="g">celular</span></h2>
+    <div style="display:flex;gap:34px;margin-top:56px;justify-content:center;align-items:flex-start">
+      <!-- phone A: atividade -->
+      <div style="width:400px;height:640px;border:12px solid #0b1430;border-radius:54px;background:#fff;overflow:hidden;box-shadow:0 0 0 3px #2b3d6e,0 30px 70px rgba(0,0,0,.5);color:var(--ink);padding:26px">
+        <span class="tag">Palestra</span> <span class="tag" style="background:#ffe3e8;color:#c4113b">Online</span>
+        <div style="font-size:27px;font-weight:800;line-height:1.15;margin:16px 0">Santiago Echeverri — “El disyuntivismo epistemológico y el problema de la inducción”</div>
+        <div style="background:#f3f5fa;border-radius:16px;padding:16px 18px;font-size:19px;line-height:1.5;color:#445"><b>5 de outubro de 2026, 18h às 20h</b><br>Online — YouTube da SBFA<br>Palestrante: Santiago Echeverri (UNAM)</div>
+        <div style="background:#ffe9ee;border-radius:18px;padding:18px;margin-top:22px"><div style="font-size:18px;color:#a3103a;font-weight:600">Transmissão/Sala Online</div><div style="background:#e11d48;color:#fff;border-radius:12px;text-align:center;padding:14px;font-weight:700;font-size:22px;margin-top:10px">Participar/Assistir</div></div>
+      </div>
+      <!-- phone B: inscrição -->
+      <div style="width:400px;height:640px;border:12px solid #0b1430;border-radius:54px;background:#fff;overflow:hidden;box-shadow:0 0 0 3px #2b3d6e,0 30px 70px rgba(0,0,0,.5);color:var(--ink);padding:26px;margin-top:60px">
+        <span class="tag" style="background:#dcf7ea;color:#0a7a4d">Vagas disponíveis</span>
+        <div style="font-size:30px;font-weight:800;margin:20px 0 6px">Formulário de Inscrição</div>
+        <div class="mini" style="margin-bottom:18px">Preencha os dados para gerar seu voucher.</div>
+        <div class="mini" style="font-weight:700">Nome completo *</div><div style="background:#f1f4f9;border-radius:10px;height:46px;margin:6px 0 14px"></div>
+        <div class="mini" style="font-weight:700">E-mail *</div><div style="background:#f1f4f9;border-radius:10px;height:46px;margin:6px 0 14px"></div>
+        <div class="mini" style="font-weight:700">Telefone / WhatsApp</div><div style="background:#f1f4f9;border-radius:10px;height:46px;margin:6px 0 20px"></div>
+        <div style="background:#f59e0b;color:#fff;border-radius:12px;text-align:center;padding:14px;font-weight:700;font-size:21px">Confirmar e gerar voucher</div>
+      </div>
+    </div>
+    <div class="foot"><span><b>07</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 08 INSCRIÇÕES -->
+<section class="card light" id="c08">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Inscrições</div>
+    <h2>Do cadastro ao<br><span class="g">voucher</span><br>de confirmação</h2>
+    <ul class="bullets" style="gap:28px;margin-top:44px">
+      <li><span class="dot"></span><span><b>Automática ou manual</b>confirmação imediata ou dependente do organizador</span></li>
+      <li><span class="dot"></span><span><b>Submissão de trabalho</b>título, autores, resumo, palavras-chave e arquivo anexo</span></li>
+      <li><span class="dot"></span><span><b>Vagas e lista de espera</b>com voucher de confirmação</span></li>
+      <li><span class="dot"></span><span><b>Check-in e frequência</b>acompanhamento pelo organizador</span></li>
+    </ul>
+    <div class="panel" style="margin-top:30px;display:flex;align-items:center;gap:26px;padding:24px 30px">
+      <span class="tag" style="background:#dcf7ea;color:#0a7a4d;font-size:24px;padding:10px 18px">Confirmação automática</span>
+      <span style="font-size:28px;font-weight:600;color:var(--ink)">Vagas abertas até 09/11/2026 às 20h</span>
+    </div>
+    <div class="foot"><span><b>08</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 09 ORGANIZADORES -->
+<section class="card dark" id="c09">
+  <svg class="logo"><use href="#lg"/></svg>
+  <div class="in">
+    <div class="eyebrow">Para quem organiza</div>
+    <h2>A área<br><span class="g">administrativa</span></h2>
+    <p class="lead">Cada organizador gerencia seus eventos e grupos em um painel próprio.</p>
+    <div class="win" style="zoom:.8;margin-top:46px">
+      <div class="bar"><i></i><i></i><i></i><span>/adm/eventos/… · Atividades</span></div>
+      <div style="padding:22px 26px;background:#f6f8fc;display:flex;flex-direction:column;gap:14px">
+        <div style="background:#fff;border-radius:14px;padding:16px 20px;border-left:6px solid #5b3df5"><div style="font-weight:700;font-size:25px">Os prazeres verdadeiros no Filebo de Platão</div><div class="mini" style="margin-top:4px"><span class="tag" style="background:#dcf7ea;color:#0a7a4d">Publicado</span> <span class="tag" style="background:#fff0d6;color:#9a5b00">Principal</span> <span class="tag">Mesa 1</span></div></div>
+        <div style="background:#fff;border-radius:14px;padding:16px 20px;border-left:6px solid #5b3df5"><div style="font-weight:700;font-size:25px">Daimon metaxý: a mediação pedagógica no advento da filosofia</div><div class="mini" style="margin-top:4px"><span class="tag" style="background:#dcf7ea;color:#0a7a4d">Publicado</span> <span class="tag">Mesa 1</span></div></div>
+      </div>
+    </div>
+    <ul class="bullets" style="gap:22px;margin-top:44px">
+      <li><span class="num">1</span><span><b>Novo evento em poucos cliques</b>filtros por publicados e rascunhos</span></li>
+      <li><span class="num">2</span><span><b>Arraste para reorganizar</b>mova atividades, entre dias, e ajuste a duração</span></li>
+      <li><span class="num">3</span><span><b>Pré-visualize e edite direto na página</b>visitantes só veem após publicar</span></li>
+    </ul>
+    <div class="foot"><span><b>09</b> / 10</span><span class="swipe">Deslize <svg><use href="#arrow"/></svg></span></div>
+  </div>
+</section>
+
+<!-- 10 EM BREVE + CTA -->
+<section class="card light" id="c10">
+  <div class="in" style="text-align:center">
+    <svg style="width:120px;height:120px;margin-top:0;filter:drop-shadow(0 18px 24px rgba(20,40,90,.3))"><use href="#lg"/></svg>
+    <div class="panel" style="margin:34px auto 0;max-width:820px;padding:24px 36px;text-align:left;background:#0f2250;border:none;color:#fff">
+      <span class="pill" style="background:#f59e0b">Em breve</span>
+      <h3 style="font-size:46px;font-weight:800;margin:14px 0 8px;line-height:1.1">Transmissões e videoconferências</h3>
+      <p style="font-size:29px;color:#b9c8e6;line-height:1.35">Sala integrada à página do evento, transmissão ao vivo e chat sem sair da plataforma.</p>
+    </div>
+    <div class="eyebrow" style="justify-content:center;margin-top:40px">Participe</div>
+    <h1 style="font-size:130px;margin-top:14px;letter-spacing:-.04em">Vem pra <span class="g">Rede</span></h1>
+    <div style="display:flex;flex-direction:column;gap:14px;margin:36px auto 0;max-width:820px">
+      <div class="panel" style="padding:16px 34px;text-align:center"><div style="font-size:26px;color:var(--muted);font-weight:500">Plataforma de eventos</div><div style="font-size:38px;font-weight:700">eventos.redefilosofica.com.br</div></div>
+      <div class="panel" style="padding:16px 34px;text-align:center"><div style="font-size:26px;color:var(--muted);font-weight:500">No aplicativo</div><div style="font-size:38px;font-weight:700">m.redefilosofica.com.br/participar</div></div>
+      <div class="panel" style="padding:16px 34px;text-align:center"><div style="font-size:26px;color:var(--muted);font-weight:500">Portal</div><div style="font-size:38px;font-weight:700">redefilosofica.com.br</div></div>
+    </div>
+    <div class="foot" style="justify-content:center"><span><b>10</b> / 10 · Rede Filosófica</span></div>
+  </div>
+</section>
+
+</body>
+</html>
